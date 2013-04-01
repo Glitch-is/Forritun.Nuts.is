@@ -44,7 +44,7 @@ Route::post('/', function(){
 	$user->name = Input::get('nafn');
 	$user->phone = Input::get('símanúmer');
 
-	return $user->save();
+	return Response::json(array( 'success' => $user->save()));
 });
 
 /*

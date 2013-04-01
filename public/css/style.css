@@ -110,3 +110,9 @@
     .terminal a:hover {
         color: red;
     }
+
+    .cursor{
+        margin-top: 1em;
+        height: 2px;
+        /*background-color: #00c420 !important;*/
+    }
