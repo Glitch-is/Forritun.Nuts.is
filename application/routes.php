@@ -37,6 +37,16 @@ Route::get('/', function()
 	return View::make('home.index');
 });
 
+Route::post('/', function(){
+
+	$user = new User;
+	$user->email = Input::get('tölvupóstur');
+	$user->name = Input::get('nafn');
+	$user->phone = Input::get('símanúmer');
+
+	return $user->save();
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application 404 & 500 Error Handlers
