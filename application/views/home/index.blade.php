@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Sign in &middot; Twitter Bootstrap</title>
+    <title>Skráning í forritunarklúbbinn</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -34,7 +34,7 @@
 
     <div class="container">
       <div class="logo">
-        <img class="heading" src="img/forritunlogo.gif" />
+        <img class="heading" src="img/forritunlogo.png" />
       </div>
       <div class="span12" id="terminal">
         
