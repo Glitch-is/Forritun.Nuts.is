@@ -1,12 +1,13 @@
 jQuery(function($, undefined) { 
 // LOGIN
+// The prompts, the validators, and the error messages
 var prompts = [
   {
     title: 'nafn: ', 
     validator: function(cmd){
-      return /^[\w ]*$/.test(cmd)
+      return /^[A-Za-zá-öÁ-Ö ]*$/.test(cmd)
     }, 
-    errormsg: 'Nafn getur einungis innihaldið bókstafi'
+    errormsg: 'Nafn getur einungis innihaldið bókstafi eða bil'
   }, 
   {
     title: 'tölvupóstur: ',
@@ -18,26 +19,25 @@ var prompts = [
   {
     title: 'símanúmer: ', 
     validator: function(cmd){
-      return /^[\d]{3}\s?[\d]{4}$/.test(cmd)
+      return /^(\+354[- ]?)?[\d]{3}[\s-]?[\d]{4}$/.test(cmd)
     },
-    errormsg: 'Símanúmer er rangt: XXX-XXXX'
+    errormsg: 'Símanúmer eru venjulega á forminu XXX-XXXX'
   } 
   ];
+  //The stuff the user entered, gradually gets filled
 var signin_stuff = [];
+//The number of times the user has entered stuff
 var count = 0;
 //Terminal handler
 var term_handler = function(command, term) {
+  if(!prompts[count  % 4].validator(command)){
+    term.echo(prompts[count % 4].errormsg);
+    return;
+   }
   var idx = ++count % 4;
   if (idx < 3) {
-    if(prompts[(count - 1) % 4].validator(command))
-    {
-      signin_stuff.push(command); //add to list
-      term.push(arguments.callee, {prompt: prompts[idx].title});
-    }
-    else{
-      count--;
-      term.echo(prompts[count % 4].errormsg);
-    }
+    signin_stuff.push(command); //add to list
+    term.push(arguments.callee, {prompt: prompts[idx].title});
   } else {
     signin_stuff.push(command);
     term.push(function(command, term) {
@@ -70,7 +70,7 @@ var term_handler = function(command, term) {
 }
 
 
-$('#terminal').terminal(term_handler, {greetings: false,
+$('#terminal').terminal(term_handler, {
   height: 400,
   history: false,
   prompt: prompts[0].title,
