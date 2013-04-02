@@ -34,7 +34,7 @@
 
     <div class="container">
       <div class="logo">
-        <img class="heading" src="img/forritunlogo.png" />
+        <img class="heading" src="img/forritunlogo.gif" />
       </div>
       <div class="span12" id="terminal">
         
