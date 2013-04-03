@@ -48,7 +48,7 @@ var term_handler = function(command, term) {
           term.pause();
           var login_info = {};
           for (var i = 0; i < signin_stuff.length; i++) {
-            login_info[prompts[i].title.substring(0,prompts[i].length - 2)] = signin_stuff[i]
+            login_info[prompts[i].title.substring(0,prompts[i].title.length - 2)] = signin_stuff[i]
           };
           console.log(login_info);
           $.post('/',login_info, function(data){

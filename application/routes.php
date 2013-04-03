@@ -38,7 +38,6 @@ Route::get('/', function()
 });
 
 Route::post('/', function(){
-
 	$user = new User;
 	$user->email = Input::get('tölvupóstur');
 	$user->name = Input::get('nafn');
