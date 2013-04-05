@@ -161,3 +161,7 @@ pip-log.txt
 
 # Mac crap
 .DS_Store
+
+#Drop the database files (trade secrets)
+application/config/local/database.php
+application/config/production/database.php

@@ -24,7 +24,7 @@
 $environments = array(
 
 	'local' => array('http://localhost*', '*.dev'),
-
+  'production' => array('http://forritun.nuts.is*')
 );
 
 // --------------------------------------------------------------
