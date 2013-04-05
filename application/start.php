@@ -171,3 +171,9 @@ if ( ! Request::cli() and Config::get('session.driver') !== '')
 {
 	Session::load();
 }
+
+
+//Custom auth function
+Auth::extend('member', function() {
+    return new MemberAuth();
+});

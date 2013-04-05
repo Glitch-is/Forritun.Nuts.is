@@ -34,7 +34,9 @@
 
 Route::get('/', function()
 {
-	return View::make('home.index');
+	Asset::container('footer')->add('jquery-terminal','js/jquery.terminal-0.6.2.min.js');
+	Asset::container('footer')->add('jquery-terminal','js/terminal.js');
+	return View::make('forritun.register');
 });
 
 Route::post('/', function(){
@@ -46,8 +48,19 @@ Route::post('/', function(){
 	return Response::json(array( 'success' => $user->save()));
 });
 
+Route::get('/login',function(){
+	return View::make('forritun.login');
+});
+
+Route::post('/login',function(){
+	if (Auth::attempt(Input::all()))
+	{
+		return 'Login successful!';
+	}else return 'Login unsuccessful!';
+});
+
 Route::get('/members',function(){
-	return View::make('home.members')->with('members',Member::all());
+	return View::make('forritun.members')->with('members',Member::all());
 });
 
 /*

@@ -165,3 +165,4 @@ pip-log.txt
 #Drop the database files (trade secrets)
 application/config/local/database.php
 application/config/production/database.php
+application/config/database.php
