@@ -1,5 +1,5 @@
 <?php
 
-class User extends Eloquent {
+class Member extends Eloquent {
 	public static $timestamps = true;
 }

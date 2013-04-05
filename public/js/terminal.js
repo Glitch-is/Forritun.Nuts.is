@@ -5,24 +5,27 @@ var prompts = [
   {
     title: 'nafn: ', 
     validator: function(cmd){
-      return /^[A-Za-zá-öÁ-Ö ]*$/.test(cmd)
+      return /^[A-Za-zá-öÁ-Ö ]*$/.test(cmd);
     }, 
-    errormsg: 'Nafn getur einungis innihaldið bókstafi eða bil'
+    errormsg: 'Nafn getur einungis innihaldið bókstafi eða bil',
+    optional: false
   }, 
   {
     title: 'tölvupóstur: ',
     validator: function(cmd){
-      return /^[^@]+@[^@]+\.[^@]+$/.test(cmd)
-    }, 
-    errormsg: 'Tölvupóstfang gengur ekki'
+      return /^[^@]+@[^@]+\.[^@]+$/.test(cmd);
+    },
+    errormsg: 'Tölvupóstfang gengur ekki',
+    optional: false
   },
   {
-    title: 'símanúmer: ', 
+    title: 'símanúmer(valfrjálst): ',
     validator: function(cmd){
-      return /^(\+354[- ]?)?[\d]{3}[\s-]?[\d]{4}$/.test(cmd)
+      return /^(\+354[- ]?)?[\d]{3}[\s-]?[\d]{4}$/.test(cmd);
     },
-    errormsg: 'Símanúmer eru venjulega á forminu XXX-XXXX'
-  } 
+    errormsg: 'Símanúmer eru venjulega á forminu XXX-XXXX',
+    optional: true
+  }
   ];
   //The stuff the user entered, gradually gets filled
 var signin_stuff = [];
@@ -30,7 +33,12 @@ var signin_stuff = [];
 var count = 0;
 //Terminal handler
 var term_handler = function(command, term) {
-  if(!prompts[count  % 4].validator(command)){
+  if (!prompts[count  % 4].optional && command === "")
+  {
+    term.echo(prompts[count % 4].title.substring(0,prompts[count % 4].title.length - 2) + " má ekki vera tómt!");
+    return;
+  }
+  else if(command !== "" && !prompts[count  % 4].validator(command)){
     term.echo(prompts[count % 4].errormsg);
     return;
    }
@@ -41,27 +49,34 @@ var term_handler = function(command, term) {
   } else {
     signin_stuff.push(command);
     term.push(function(command, term) {
-        console.log(command);
         if (command == 'j') {
           count++;
           term.pop().pop().pop();
           term.pause();
           var login_info = {};
           for (var i = 0; i < signin_stuff.length; i++) {
-            login_info[prompts[i].title.substring(0,prompts[i].title.length - 2)] = signin_stuff[i]
-          };
-          console.log(login_info);
-          $.post('/',login_info, function(data){
-            if (data.success)
-            {
-              term.echo('Velkomin/n í forritunarklúbbinn!');
-            }
-            else
-            {
-              term.echo("Nýskráning gekk ekki, reynið aftur síðar");
-              term.push(term_handler, {prompt: prompts[0].title});;
-            }
-          }, "json");
+            login_info[prompts[i].title.substring(0,prompts[i].title.length - 2)] = signin_stuff[i];
+          }
+          $.ajax({
+              url: "/",
+              type: "POST",
+              data: login_info,
+              success: function(data){
+                if (data.success)
+                {
+                  term.echo('Velkomin/n í forritunarklúbbinn!');
+                }
+                else
+                {
+                  term.echo("Nýskráning gekk ekki, reynið aftur síðar");
+                  term.push(term_handler, {prompt: prompts[0].title});
+                }
+              },
+              error: function(){
+                term.echo("Nýskráning gekk ekki, reynið aftur síðar");
+                term.push(term_handler, {prompt: prompts[0].title});
+              }
+          });
         } else {
           term.push(term_handler, {prompt: prompts[0].title});
         }

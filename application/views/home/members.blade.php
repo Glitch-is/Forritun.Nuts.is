@@ -35,12 +35,23 @@
       <div class="logo">
         <img class="heading" src="img/forritunlogo.png" />
       </div>
-      <div class="span12" id="terminal">
-        
+      <div class="row">
+
+        <div class="span12" id="terminal">
+          <table class="table">
+            <thead>
+              <th>ID</th>
+              <th>Name</th>
+            </thead>
+          @foreach($members as $member)
+            <tr>
+              <td>{{$member->id}}</td>
+              <td>{{$member->name}}</td>
+            </tr>
+          @endforeach
+          </table>
+        </div>
       </div>
     </div>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    {{HTML::script('js/jquery.terminal-0.6.2.min.js')}}
-    {{HTML::script('js/terminal.js')}}
   </body>
 </html>

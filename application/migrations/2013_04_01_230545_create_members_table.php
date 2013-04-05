@@ -1,6 +1,6 @@
 <?php
 
-class Create_Users_Table {
+class Create_Members_Table {
 
 	/**
 	 * Make changes to the database.
@@ -9,7 +9,7 @@ class Create_Users_Table {
 	 */
 	public function up()
 	{
-		Schema::create('users', function($table)
+		Schema::create('members', function($table)
 		{
 		    $table->increments('id');
 		    $table->string('name');
@@ -26,7 +26,7 @@ class Create_Users_Table {
 	 */
 	public function down()
 	{
-		Schema::drop('users');
+		Schema::drop('members');
 	}
 
 }

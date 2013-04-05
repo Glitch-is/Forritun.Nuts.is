@@ -38,12 +38,16 @@ Route::get('/', function()
 });
 
 Route::post('/', function(){
-	$user = new User;
+	$user = new Member;
 	$user->email = Input::get('tölvupóstur');
 	$user->name = Input::get('nafn');
 	$user->phone = Input::get('símanúmer');
 
 	return Response::json(array( 'success' => $user->save()));
+});
+
+Route::get('/members',function(){
+	return View::make('home.members')->with('members',Member::all());
 });
 
 /*
