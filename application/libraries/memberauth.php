@@ -46,7 +46,7 @@ class MemberAuth extends Laravel\Auth\Drivers\Driver {
 		if ( is_null($user) ) return false;
 
 		if ( empty($user->{$password_field}) ){
-			//TODO: Send email to user with password
+			
 			return $this->login($user->get_key(), array_get($arguments, 'remember'));
 		}
 		else if (Hash::check($password, $user->{$password_field}))
