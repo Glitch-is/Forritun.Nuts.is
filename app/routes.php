@@ -10,6 +10,7 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+//Basic routes
 Route::get('/',function(){
 	return View::make('forritun.announcements')
 		->with('announcements',Announcement::with('member')->paginate(10));
@@ -40,7 +41,7 @@ Route::get('/faq', function(){
 	return View::make('forritun.faq');
 });
 
-
+//Authentication
 Route::get('/login','MemberController@getLogin');
 Route::post('/login','MemberController@postLogin');
 Route::get('/register', 'MemberController@getCreate');
@@ -51,5 +52,7 @@ Route::post('/forgot','MemberController@postForgot');
 Route::get('/reset/{token}','MemberController@getReset');
 Route::post('/reset','MemberController@postReset');
 
+
+//Controllers
 Route::controller( 'admin/announcement', 'AnnouncementController');
 Route::controller('admin','AdminController');
