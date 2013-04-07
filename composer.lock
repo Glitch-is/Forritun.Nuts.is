@@ -1,5 +1,5 @@
 {
-    "hash": "f981e316b1c7ca1151793a49e8b4f520",
+    "hash": "bf1a9dd453958cc7620fadc00acaa30c",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -128,12 +128,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "8a963e17f440a5ff418723bfb4e823ce0b572b41"
+                "reference": "45a67240aaf341c85b4db58f8195896cae0b9688"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/8a963e17f440a5ff418723bfb4e823ce0b572b41",
-                "reference": "8a963e17f440a5ff418723bfb4e823ce0b572b41",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/45a67240aaf341c85b4db58f8195896cae0b9688",
+                "reference": "45a67240aaf341c85b4db58f8195896cae0b9688",
                 "shasum": ""
             },
             "require": {
@@ -219,7 +219,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2013-04-06 01:06:10"
+            "time": "2013-04-07 01:23:11"
         },
         {
             "name": "laravelbook/ardent",
@@ -327,12 +327,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "88d705c19f8cc08c2cc5a0a615907df5e9dd376e"
+                "reference": "642cdf620bb9d71bd06f64f6636144c471c551b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/88d705c19f8cc08c2cc5a0a615907df5e9dd376e",
-                "reference": "88d705c19f8cc08c2cc5a0a615907df5e9dd376e",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/642cdf620bb9d71bd06f64f6636144c471c551b8",
+                "reference": "642cdf620bb9d71bd06f64f6636144c471c551b8",
                 "shasum": ""
             },
             "require": {
@@ -381,7 +381,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2013-04-05 13:36:57"
+            "time": "2013-04-07 11:22:41"
         },
         {
             "name": "nikic/php-parser",
@@ -1011,12 +1011,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel.git",
-                "reference": "3bca4c67d600bb16a1ceffc8adca17c82cca5277"
+                "reference": "0d2107989379308035a45084e98179782cdb7a31"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/3bca4c67d600bb16a1ceffc8adca17c82cca5277",
-                "reference": "3bca4c67d600bb16a1ceffc8adca17c82cca5277",
+                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/0d2107989379308035a45084e98179782cdb7a31",
+                "reference": "0d2107989379308035a45084e98179782cdb7a31",
                 "shasum": ""
             },
             "require": {
@@ -1071,7 +1071,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "http://symfony.com",
-            "time": "2013-04-06 13:17:40"
+            "time": "2013-04-07 11:10:22"
         },
         {
             "name": "symfony/process",
@@ -1329,6 +1329,61 @@
                 "laravel"
             ],
             "time": "2013-04-03 07:27:37"
+        },
+        {
+            "name": "zizaco/entrust",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Zizaco/entrust.git",
+                "reference": "da6f9051ef51f04e5a2db7cf580c20cf514781e9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Zizaco/entrust/zipball/da6f9051ef51f04e5a2db7cf580c20cf514781e9",
+                "reference": "da6f9051ef51f04e5a2db7cf580c20cf514781e9",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.0.x",
+                "laravelbook/ardent": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "illuminate/database": "4.0.x",
+                "mockery/mockery": "0.7.2",
+                "zizaco/factory-muff": "dev-master"
+            },
+            "suggest": {
+                "zizaco/confide": "Confide is an authentication solution for Laravel 4 that couples very well with Entrust"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/commands"
+                ],
+                "psr-0": {
+                    "Zizaco\\Entrust": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Zizaco Zizuini",
+                    "email": "zizaco@gmail.com"
+                }
+            ],
+            "description": "This package provides a flexible way to add Role-based Permissions to Laravel 4",
+            "keywords": [
+                "auth",
+                "illuminate",
+                "laravel",
+                "roles"
+            ],
+            "time": "2013-04-01 13:06:55"
         }
     ],
     "packages-dev": [
@@ -1341,7 +1396,8 @@
     "stability-flags": {
         "teepluss/asset": 20,
         "laravelbook/laravel4-powerpack": 20,
-        "zizaco/confide": 20
+        "zizaco/confide": 20,
+        "zizaco/entrust": 20
     },
     "platform": [
 

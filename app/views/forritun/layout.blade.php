@@ -31,25 +31,15 @@
 
   <body>
 
+    @include('forritun.navbar')
     <div class="container">
       <div class="logo">
         <img class="heading" src="img/forritunlogo.png" />
       </div>
       @yield('main')
     </div>
-    <div class="navbar navbar-fixed-bottom">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="brand" href="#">Title</a>
-          <ul class="nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     {{Asset::container('footer')->scripts()}}
   </body>
 </html>

@@ -103,6 +103,7 @@ return array(
 		'Teepluss\Asset\AssetServiceProvider',
 		'LaravelBook\Laravel4Powerpack\Providers\PowerpackServiceProvider',
 		'Zizaco\Confide\ConfideServiceProvider',
+		'Zizaco\Entrust\EntrustServiceProvider',
 	),
 
 	/*
@@ -173,6 +174,7 @@ return array(
 	    'Form' => 'LaravelBook\Laravel4Powerpack\Facades\FormFacade',
 	    'Str' => 'LaravelBook\Laravel4Powerpack\Facades\StrFacade', 
 	    'Confide'    => 'Zizaco\Confide\ConfideFacade',
+	    'Entrust'    => 'Zizaco\Entrust\EntrustFacade',
 	),
 
 );

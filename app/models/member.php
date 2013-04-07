@@ -7,4 +7,7 @@ class Member extends ConfideUser {
         'email' => 'required|email',
         'password' => 'required',
     );
+    public function announcements(){
+    	return $this->hasMany('Announcement');
+    }
 }

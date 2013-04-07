@@ -11,12 +11,18 @@
 |
 */
 Route::get('/',function(){
-	return 'Hello!';
+	return View::make('forritun.announcements')
+		->with('announcements',Announcement::with('member')->paginate(10));
 })->before('auth');
 
 Route::get('/members',function(){
-	return View::make('forritun.members')->with('members',Member::all());
+	return View::make('forritun.members')
+		->with('members',Member::all());
 })->before('auth');
+
+Route::get('/faq', function(){
+	return View::make('forritun.faq');
+});
 
 
 Route::get('/login','MemberController@getLogin');
@@ -33,7 +39,7 @@ Route::filter('auth', function()
         Session::put( 'loginRedirect', Request::url() );
 
         // Redirect back to user login
-        return Redirect::to( '/login' );
+        return Redirect::to( '/register' );
     }
 });
 //Route::controller( 'user', 'MemberController');

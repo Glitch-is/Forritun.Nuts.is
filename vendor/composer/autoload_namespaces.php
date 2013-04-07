@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Zizaco\\Entrust' => $vendorDir . '/zizaco/entrust/src',
     'Zizaco\\Confide' => $vendorDir . '/zizaco/confide/src',
     'Teepluss\\Asset' => $vendorDir . '/teepluss/asset/src',
     'Symfony\\Component\\Translation\\' => $vendorDir . '/symfony/translation',

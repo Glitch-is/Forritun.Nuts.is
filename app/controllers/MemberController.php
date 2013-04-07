@@ -18,6 +18,7 @@ class MemberController extends BaseController {
     public function getCreate()
     {
         Asset::container('footer')->add('jquery-terminal','js/jquery.terminal-0.6.2.min.js');
+        Asset::container('footer')->add('form-terminal','js/form-terminal.js');
         Asset::container('footer')->add('terminal-register','js/register-terminal.js');
         return View::make('forritun.register');
     }
@@ -64,6 +65,7 @@ class MemberController extends BaseController {
         else
         {
             Asset::container('footer')->add('jquery-terminal','js/jquery.terminal-0.6.2.min.js');
+            Asset::container('footer')->add('form-terminal','js/form-terminal.js');
             Asset::container('footer')->add('terminal-login','js/login-terminal.js');
             return View::make('forritun.login');
         }

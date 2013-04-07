@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AddPasswordRoleMembersTable' => $baseDir . '/app/database/migrations/2013_04_05_210344_add_password_role_members_table.php',
+    'Announcement' => $baseDir . '/app/models/announcement.php',
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
     'ClassPreloader\\Application' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/Application.php',
     'ClassPreloader\\ClassList' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/ClassList.php',
@@ -19,6 +20,7 @@ return array(
     'ClassPreloader\\Parser\\FileVisitor' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/Parser/FileVisitor.php',
     'ClassPreloader\\Parser\\NodeTraverser' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/Parser/NodeTraverser.php',
     'ConfideSetupUsersTable' => $baseDir . '/app/database/migrations/2013_04_06_171540_confide_setup_users_table.php',
+    'CreateAnnouncementsTable' => $baseDir . '/app/database/migrations/2013_04_07_132136_create_announcements_table.php',
     'CreateMembersTable' => $baseDir . '/app/database/migrations/2013_04_01_230545_create_members_table.php',
     'DatabaseSeeder' => $baseDir . '/app/database/seeds/DatabaseSeeder.php',
     'HomeController' => $baseDir . '/app/controllers/HomeController.php',
@@ -130,7 +132,6 @@ return array(
     'Illuminate\\Encryption\\Encrypter' => $vendorDir . '/laravel/framework/src/Illuminate/Encryption/Encrypter.php',
     'Illuminate\\Encryption\\EncryptionServiceProvider' => $vendorDir . '/laravel/framework/src/Illuminate/Encryption/EncryptionServiceProvider.php',
     'Illuminate\\Events\\Dispatcher' => $vendorDir . '/laravel/framework/src/Illuminate/Events/Dispatcher.php',
-    'Illuminate\\Events\\Event' => $vendorDir . '/laravel/framework/src/Illuminate/Events/Event.php',
     'Illuminate\\Events\\EventServiceProvider' => $vendorDir . '/laravel/framework/src/Illuminate/Events/EventServiceProvider.php',
     'Illuminate\\Events\\Subscriber' => $vendorDir . '/laravel/framework/src/Illuminate/Events/Subscriber.php',
     'Illuminate\\Exception\\ExceptionServiceProvider' => $vendorDir . '/laravel/framework/src/Illuminate/Exception/ExceptionServiceProvider.php',
@@ -960,4 +961,10 @@ return array(
     'Zizaco\\Confide\\MigrationCommand' => $vendorDir . '/zizaco/confide/src/commands/MigrationCommand.php',
     'Zizaco\\Confide\\ObjectProvider' => $vendorDir . '/zizaco/confide/src/Zizaco/Confide/ObjectProvider.php',
     'Zizaco\\Confide\\RoutesCommand' => $vendorDir . '/zizaco/confide/src/commands/RoutesCommand.php',
+    'Zizaco\\Entrust\\Entrust' => $vendorDir . '/zizaco/entrust/src/Zizaco/Entrust/Entrust.php',
+    'Zizaco\\Entrust\\EntrustFacade' => $vendorDir . '/zizaco/entrust/src/Zizaco/Entrust/EntrustFacade.php',
+    'Zizaco\\Entrust\\EntrustRole' => $vendorDir . '/zizaco/entrust/src/Zizaco/Entrust/EntrustRole.php',
+    'Zizaco\\Entrust\\EntrustServiceProvider' => $vendorDir . '/zizaco/entrust/src/Zizaco/Entrust/EntrustServiceProvider.php',
+    'Zizaco\\Entrust\\HasRole' => $vendorDir . '/zizaco/entrust/src/Zizaco/Entrust/HasRole.php',
+    'Zizaco\\Entrust\\MigrationCommand' => $vendorDir . '/zizaco/entrust/src/commands/MigrationCommand.php',
 );

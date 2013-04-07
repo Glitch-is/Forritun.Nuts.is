@@ -4644,7 +4644,14 @@ class ErrorHandler
         }
         if ($level & (E_USER_DEPRECATED | E_DEPRECATED)) {
             if (null !== self::$logger) {
-                $stack = version_compare(PHP_VERSION, '5.4', '<') ? array_slice(debug_backtrace(false), 0, 10) : debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 10);
+                if (version_compare(PHP_VERSION, '5.4', '<')) {
+                    $stack = array_map(function ($row) {
+                        unset($row['args']);
+                        return $row;
+                    }, array_slice(debug_backtrace(false), 0, 10));
+                } else {
+                    $stack = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 10);
+                }
                 self::$logger->warning($message, array('type' => self::TYPE_DEPRECATION, 'stack' => $stack));
             }
             return true;
@@ -8714,7 +8721,9 @@ abstract class Model implements ArrayAccess, ArrayableInterface, JsonableInterfa
     public function delete()
     {
         if ($this->exists) {
-            $this->fireModelEvent('deleting', false);
+            if ($this->fireModelEvent('deleting') === false) {
+                return false;
+            }
             // Here, we'll touch the owning models, verifying these timestamps get updated
             // for the models. This will allow any caching to get broken on the parents
             // by the timestamp. Then we will go ahead and delete the model instance.
@@ -14514,7 +14523,7 @@ class MessageBag implements ArrayableInterface, Countable, JsonableInterface, Me
      *
      * @var string
      */
-    protected $format = '<span class="help-inline">:message</span>';
+    protected $format = ':message';
     /**
      * Create a new message bag instance.
      *
