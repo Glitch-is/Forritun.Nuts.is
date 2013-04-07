@@ -15,10 +15,26 @@ Route::get('/',function(){
 		->with('announcements',Announcement::with('member')->paginate(10));
 })->before('auth');
 
-Route::get('/members',function(){
-	return View::make('forritun.members')
-		->with('members',Member::all());
-})->before('auth');
+Route::get('/profile',function(){
+	return View::make('forritun.profile');
+});
+
+Route::post('/profile',function(){
+	$member = Auth::user();
+	$member->email = Input::get( 'email' );
+    $member->name = Input::get('name');
+    $member->phone = Input::get('phone');
+    if (Input::has('password'))
+    {
+    	$member->password = Input::get( 'password' );
+    	$member->password_confirmation = Input::get( 'password_confirmation' );
+    }
+    $member->save();
+    $error = $member->errors()->all(':message');
+    if (empty($error))
+    	return Redirect::to('/');
+    return Redirect::to('/login')->with('error',$error);
+});
 
 Route::get('/faq', function(){
 	return View::make('forritun.faq');
@@ -30,16 +46,10 @@ Route::post('/login','MemberController@postLogin');
 Route::get('/register', 'MemberController@getCreate');
 Route::post('/register', 'MemberController@postIndex');
 Route::get('/logout','MemberController@getLogout');
+Route::get('/forgot','MemberController@getForgot');
+Route::post('/forgot','MemberController@postForgot');
+Route::get('/reset/{token}','MemberController@getReset');
+Route::post('/reset','MemberController@postReset');
 
-Route::filter('auth', function()
-{
-    if ( Auth::guest() ) // If the user is not logged in
-    {
-        // Set the loginRedirect session variable
-        Session::put( 'loginRedirect', Request::url() );
-
-        // Redirect back to user login
-        return Redirect::to( '/register' );
-    }
-});
-//Route::controller( 'user', 'MemberController');
+Route::controller( 'admin/announcement', 'AnnouncementController');
+Route::controller('admin','AdminController');

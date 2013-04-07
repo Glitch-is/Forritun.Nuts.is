@@ -43,6 +43,16 @@ var prompts = [
     errormsg: '',
     optional: false,
     password: true
+  },
+  {
+    title: 'lykilorð(aftur): ',
+    field: 'password_confirmation',
+    validator: function(cmd){
+      return true;
+    },
+    errormsg: '',
+    optional: false,
+    password: true
   }
   ];
   var term_data = {

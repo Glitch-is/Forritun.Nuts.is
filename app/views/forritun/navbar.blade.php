@@ -10,31 +10,49 @@
     </a>
     <div class="nav-collapse collapse">
         <ul class="nav">
-          @foreach(array('Heim' => '/', 'FAQ' => '/faq') as $key => $v)
-          <li @if (substr(URL::current(),strlen(Request::root())) === $v)
-          class="active"
-          @endif>
-            <a href="{{$v}}">{{$key}}</a>
-          </li>
-          @endforeach
+          {{
+            Navbar::render(
+              array(
+                'Heim' => '/', 
+                'FAQ' => '/faq'
+              )
+            )
+          }}
       </ul>
       <ul class="nav pull-right">
         @if(Auth::guest())
-          @foreach(array('Skrá inn' => '/login', 'Nýskrá' => '/register') as $key => $v)
-          <li @if (substr(URL::current(),strlen(Request::root())) === $v)
-          class="active"
-          @endif>
-            <a href="{{$v}}">{{$key}}</a>
-          </li>
-          @endforeach
+          {{
+            Navbar::render(
+              array(
+                'Skrá inn' => array(
+                  'Skrá inn' => '/login',
+                  'Endurstilla lykilorð' => '/forgot'
+                ), 
+                'Nýskrá' => '/register'
+              )
+            )
+          }}
         @else
-          @foreach(array(Auth::user()->name => '/profile', 'Skrá út' => '/logout') as $key => $v)
-          <li @if (substr(URL::current(),strlen(Request::root())) === $v)
-          class="active"
-          @endif>
-            <a href="{{$v}}">{{$key}}</a>
-          </li>
-          @endforeach
+          @if(Auth::user()->hasRole('Admin'))
+          {{
+            Navbar::render(
+              array(
+                'Admin' => array(
+                  'Tilkynningar' => '/admin/announcement',
+                  'Notendur' => '/admin'
+                )
+              )
+            )
+          }}
+          @endif
+          {{
+            Navbar::render(
+              array(
+                Auth::user()->name => '/profile', 
+                'Skrá út' => '/logout'
+              )
+            )
+          }} 
         @endif
       </ul>
 

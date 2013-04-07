@@ -11,11 +11,20 @@ Fólk í klúbbnum
         <thead>
           <th>ID</th>
           <th>Name</th>
+          <th>Email</th>
+          <th>Delete</th>
       </thead>
       @foreach($members as $member)
       <tr>
-          <td>{{$member->id}}</td>
+          <td>
+            {{--<a href="admin/edit/{{$member->id}}">{{$member->id}}</a>--}}
+            {{$member->id}}
+          </td>
           <td>{{$member->name}}</td>
+          <td>{{$member->email}}</td>
+          <td>
+            <a href="admin/delete/{{$member->id}}">Delete</a>
+          </td>
       </tr>
       @endforeach
   </table>

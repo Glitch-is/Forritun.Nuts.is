@@ -34,6 +34,7 @@ class MemberController extends BaseController {
         $member->name = Input::get('name');
         $member->phone = Input::get('phone');
         $member->password = Input::get( 'password' );
+        $member->password_confirmation = Input::get( 'password_confirmation' );
         // Save if valid. Password field will be hashed before save
         $member->save();
 
@@ -157,7 +158,11 @@ class MemberController extends BaseController {
      */
     public function getForgot()
     {
-        return View::make('members.forgot_password');
+        Asset::container('footer')->add('jquery-terminal','js/jquery.terminal-0.6.2.min.js');
+        Asset::container('footer')->add('form-terminal','js/form-terminal.js');
+        Asset::container('footer')->add('terminal-forgot','js/forgot-terminal.js');
+        
+        return View::make('forritun.forgot_password');
     }
 
     /**
@@ -168,15 +173,21 @@ class MemberController extends BaseController {
     {
         if( Confide::forgotPassword( Input::get( 'email' ) ) )
         {
+            if (Request::ajax()){
+                return Response::json(array('success' => true));
+            }
             $notice_msg = Lang::get('confide::confide.alerts.password_forgot');
-                        return Redirect::to('user/login')
-                            ->with( 'notice', $notice_msg );
+            return Redirect::to('user/login')
+                ->with( 'notice', $notice_msg );
         }
         else
         {
+            if (Request::ajax()){
+                return Response::json(array('success' => false));
+            }
             $error_msg = Lang::get('confide::confide.alerts.wrong_password_forgot');
-                        return Redirect::to('user/forgot')
-                            ->withInput()
+            return Redirect::to('user/forgot')
+                ->withInput()
                 ->with( 'error', $error_msg );
         }
     }
@@ -187,7 +198,11 @@ class MemberController extends BaseController {
      */
     public function getReset( $token )
     {
-        return View::make('members.reset_password')
+        Asset::container('footer')->add('jquery-terminal','js/jquery.terminal-0.6.2.min.js');
+        Asset::container('footer')->add('form-terminal','js/form-terminal.js');
+        Asset::container('footer')->add('terminal-reset','js/reset-terminal.js');
+        
+        return View::make('forritun.reset_password')
                 ->with('token', $token);
     }
 
@@ -206,14 +221,20 @@ class MemberController extends BaseController {
         // By passing an array with the token, password and confirmation
         if( Confide::resetPassword( $input ) )
         {
+            if (Request::ajax()){
+                return Response::json(array('success' => true));
+            }
             $notice_msg = Lang::get('confide::confide.alerts.password_reset');
-                        return Redirect::to('user/login')
+                        return Redirect::to('/login')
                             ->with( 'notice', $notice_msg );
         }
         else
         {
+            if (Request::ajax()){
+                return Response::json(array('success' => false));
+            }
             $error_msg = Lang::get('confide::confide.alerts.wrong_password_reset');
-                        return Redirect::to('user/reset')
+                        return Redirect::to('/reset')
                             ->withInput()
                 ->with( 'error', $error_msg );
         }

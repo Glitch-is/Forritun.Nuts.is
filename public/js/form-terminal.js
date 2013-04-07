@@ -32,7 +32,7 @@ $.fn.formTerminal = function(input){
       term.push(arguments.callee, {prompt: prompt.title});
     } else {
       data.push(command);
-
+      term.set_mask(false);
       //Adds the Ajax handler for posting the form
       term.push(function(command, term) {
           if (command == 'j') {
@@ -44,24 +44,31 @@ $.fn.formTerminal = function(input){
             for (var i = 0; i < data.length; i++) {
               post_data[input.prompts[i].field] = data[i];
             }
+            if (typeof input.additional_data !== 'undefined') $.extend(post_data,input.additional_data);
             $.ajax({
                 url: input.url,
                 type: input.type,
                 data: post_data,
                 success: function(data){
                   if (!input.success(data,term)){
+                    count = 0;
                     term.resume();
+                    term.set_mask(input.prompts[0].password);
                   }
                 },
                 error: function(){
                   input.error(term);
+                  count = 0;
                   term.resume();
+                  term.set_mask(input.prompts[0].password);
                 }
             });
           } else {
+            count = 0;
             while(term.level() > 1) term.pop();
+            term.set_mask(input.prompts[0].password);
           }
-      }, {prompt: input.submit});
+      }, {prompt: input.submit, mask: false});
     }
   };
   var term_data = {

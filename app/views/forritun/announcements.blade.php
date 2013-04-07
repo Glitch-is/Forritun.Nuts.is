@@ -15,7 +15,7 @@ Forritunarklúbbur tækniskólans
 		</div>
 		<blockquote class="pull-right">
 			<p>{{$announcement->member->name}}</p>
-			<small>{{date("m/d/y g:i A",strtotime($announcement->created_at))}}</small>
+			<small>{{date("j.n.Y G:i",strtotime($announcement->created_at))}}</small>
 		</blockquote>
 </div>
 @endforeach
